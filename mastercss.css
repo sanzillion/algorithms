@@ -1,0 +1,137 @@
+
+.google-fonts{
+  font-family: 'Aldrich', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+body{
+  background-color:  #E4E4E4;
+}
+
+.random{
+  font-family: 'Aldrich', sans-serif !important;
+}
+
+h1,h2{
+  font-family: 'Aldrich', sans-serif;
+}
+
+h3,h4,h5,p{
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.btn{
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.title{
+  margin-bottom:  0px;
+}
+
+.name{
+  margin-top:   0px;
+  margin-left:   5px;
+}
+
+.random{
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+span{
+  position: relative; 
+  float: left;
+}
+
+#profile{
+  text-decoration:  none;
+  color:  #E34141;
+}
+
+a:hover{
+  text-decoration:  none;
+  color: #4CAAEF;
+}
+
+.box{
+  padding-left: 15px;
+}
+
+.division{
+  display:inline-block;
+}
+
+.floats{
+  float: left;
+}
+
+.nopadLeft{
+  padding-left: 0px;
+}
+
+.nopadRight{
+  padding-right: 0px;
+}
+
+#searches{
+  display: block;
+  width: 1%;
+  height: 34px;
+  border: 0px;
+  border-radius: 5px;
+  padding-left: 7px;
+  margin-bottom: 5px;
+}
+
+.x-mark{
+  position: absolute;
+  color: black;
+  top: 0;
+  right: 8px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+}
+
+.results{ 
+  background-color: #F7F7F7;
+  padding: 10px 20px 10px 20px;
+  text-align: justify;
+  box-shadow: 0px 5px 15px #C5C5C5;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.text-justify{
+  text-align: right;
+}
+
+.link{
+  font-family: 'Aldrich', sans-serif;
+  color: #218FE1;
+}
+
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 467px)  and (max-height: 700px) {
+ 
+}/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+  
+}
+/* Small devices (tablets, 768px and up) */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  
+}
+/* tablets/desktops and up ----------- */
+/*@media (min-width: 992px) and (max-width: 1199px) {
+    h2{
+    font-size: 2.9vw;
+  }
+}*/
+/* large desktops and up ----------- */
+@media screen and (min-width: 992px) {
+ 
+}

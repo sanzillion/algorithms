@@ -1,2 +1,2 @@
 # algorithms
-My Favorite Algorithm Challenges in FCC [FreeCodeCamp]
+A compilation of my favorite algorithm challenges in FCC [FreeCodeCamp]

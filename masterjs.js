@@ -112,7 +112,7 @@ while(test < 5){
     curr = rn[l-1];
     pre = rn[l-2];
     p = rn[l-3];
-    //console.log("comparing "+curr +" and "+pre);
+    console.log("comparing "+curr +" and "+pre);
     if(curr == pre){
       y++;
     }
@@ -120,13 +120,13 @@ while(test < 5){
       y = 1;
     }
     l -= 1;
-    //console.log("y = "+y);
+    console.log("y = "+y);
     if(y >= 4){
       convert(curr, p);
       break;
     }
-    //console.log("l = "+l);
-    if(l <= 2){
+    console.log("l = "+l);
+    if(l <= 1){
       test = 5;
       break;
     }

@@ -174,3 +174,5 @@ rn = rn.join('');
 return rn;
 
 }
+
+convertToRoman(4352);

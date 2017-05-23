@@ -307,3 +307,25 @@ function sumFibs(num) {
 }
 
 console.log(sumFibs(10));
+
+//find element, using function as parameter
+
+function findElement(arr, func) {
+  var arrnum = arr.filter(func);
+  num = arrnum[0];
+  return num;
+}
+
+findElement([1, 3, 5, 8, 9, 10], function(num){ return num % 2 === 0; });
+
+//works like a filter
+function dropElements(arr, func) {
+  var num, len = arr.length;
+  for(var x = 0; x < len; x++){
+    num = arr.shift();
+    if(func(num)) {arr.unshift(num); break;}
+  }
+  return arr;
+}
+
+console.log(dropElements([0, 1, 0, 1], function(n) {return n === 1;}));

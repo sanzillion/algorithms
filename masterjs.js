@@ -305,6 +305,7 @@ function sumFibs(num) {
 
   return total;
 }
+sumFibs(10);
 
 console.log(sumFibs(10));
 
@@ -329,3 +330,38 @@ function dropElements(arr, func) {
 }
 
 console.log(dropElements([0, 1, 0, 1], function(n) {return n === 1;}));
+
+function steamrollArray(arr) {
+  const flatten = array => array.reduce(
+    (acc, val) => acc.concat(
+      Array.isArray(val) ? flatten(val) : val
+    ),
+    []
+  );
+  return flatten(arr);
+}
+
+console.log(steamrollArray([1, [2], [3, [[4]]]]));
+
+function binary(str){ 
+ var arr = str.split(' '), phrase = [];
+  console.log(arr);
+  for(var x = 0; x < arr.length; x++){
+  console.log("X is "+x);
+    var bin = arr[x].split('');
+  console.log(bin);
+    var mul = 2;
+    var decimal = 0;
+    for(var y = bin.length-1; y >= 0; y--){
+    console.log("y is "+y+" ,"+ parseInt(bin[y]));
+      decimal += (parseInt(bin[y]) * mul);
+      mul *= mul;
+    }
+  console.log(decimal);
+    phrase.push(String.fromCharCode(decimal));
+  }
+  phrase.join('');
+  return phrase;
+}
+
+console.log(binary("01000001 01110010 01100101"));

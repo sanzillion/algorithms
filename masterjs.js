@@ -305,5 +305,16 @@ function sumFibs(num) {
 
   return total;
 }
+sumFibs(10);
 
-console.log(sumFibs(10));
+function steamrollArray(arr) {
+  const flatten = array => array.reduce(
+    (acc, val) => acc.concat(
+      Array.isArray(val) ? flatten(val) : val
+    ),
+    []
+  );
+  return flatten(arr);
+}
+
+console.log(steamrollArray([1, [2], [3, [[4]]]]));

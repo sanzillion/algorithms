@@ -344,23 +344,24 @@ function steamrollArray(arr) {
 console.log(steamrollArray([1, [2], [3, [[4]]]]));
 
 function binary(str){ 
+ //initialize array and convert string to array by binary code
  var arr = str.split(' '), phrase = [];
-  console.log(arr);
+  //for every binary code
   for(var x = 0; x < arr.length; x++){
-  console.log("X is "+x);
+    //split each number for conversion
     var bin = arr[x].split('');
-  console.log(bin);
-    var mul = 2;
+    var mul = 1;
     var decimal = 0;
+    //use the binary array to convert to decimal
     for(var y = bin.length-1; y >= 0; y--){
-    console.log("y is "+y+" ,"+ parseInt(bin[y]));
-      decimal += (parseInt(bin[y]) * mul);
-      mul *= mul;
+      decimal = decimal + (parseInt(bin[y]) * mul);
+      mul += mul;
     }
-  console.log(decimal);
+    //get the character from the decimal and push into a new array
     phrase.push(String.fromCharCode(decimal));
   }
-  phrase.join('');
+  //join the new array into a string
+  phrase = phrase.join('');
   return phrase;
 }
 

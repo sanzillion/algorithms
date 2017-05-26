@@ -366,3 +366,23 @@ function binary(str){
 }
 
 console.log(binary("01000001 01110010 01100101"));
+
+
+function truthCheck(collection, pre) {
+  
+  for(var x = 0; x < collection.length; x++){
+    if(collection[x].hasOwnProperty(pre)){
+      if(collection[x][pre] === true){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+  
+}
+
+console.log(truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"));

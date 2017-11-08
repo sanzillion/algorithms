@@ -385,3 +385,117 @@ function truthCheck(collection, pre) {
 
 console.log(truthCheck([{"single": "double"}, {"single": NaN}], "single"));
 
+//ADVANCE ALGORITHMS
+
+//EXACT CHANGE
+function checkCashRegister(price, cash, cid) {
+    var change = cash - price, drawer = {}, total = 0, whole, dec, arr = {}, cent = 0;
+    var dollar = {
+        whole : [['TWENTY', 20], ['TEN', 10], ['FIVE', 5], ['ONE', 1]],
+        dec : [['QUARTER', 25, 0.25], ['DIME', 10, 0.10], ['NICKEL', 5, 0.05], ['PENNY', 1, 0.01]]
+    };
+    
+    //convertion to object from an array of key-value tuples----
+      cid.forEach(function(data){
+        drawer[data[0]] = data[1];
+        total += data[1];
+      });
+
+    //------separate whole and decimal--------
+    var parts = change.toString().split('.');
+    whole = parts[0];
+    dec = parts[1];
+
+    //check if the decimal part has only 1 char then add 0
+    if(dec.length == 1){ dec = parseInt(dec+'0'); }
+
+    //drawer total
+    if (total == change){
+        return "Closed";
+    }
+    else{
+        //initial values
+        var arg = 1;
+        var part = 'whole';
+        change_temp = whole;
+        var x;
+
+        //loop twice, once if whole num == 0
+        for(x = 0; x <= 1; x++){
+            if(x == 1 || whole == 0){
+                x = 1;
+                cent = 0;
+                part = 'dec';
+                change_temp = dec;
+            }
+
+            //while there is still change left
+            while(change_temp > 0){
+                if(part == 'dec'){
+                    arg = 2;
+                }
+                // console.log(change);
+
+                //see if the drawer has the money for change
+                if((drawer[dollar[part][cent][0]] - dollar[part][cent][arg]) > -1){
+
+                    //deduct from the drawer for change and check if its insufficient
+                    if((drawer[dollar[part][cent][0]] -= dollar[part][cent][arg]) < 0){
+                        return "Insufficient Funds";
+                    }
+
+                    // console.log(change_temp+" money "+dollar[part][cent][1]);
+                    //check if the number can still accomodate another certain coin
+                    if((change_temp - dollar[part][cent][1]) > -1){
+                        change_temp -= dollar[part][cent][1];
+
+                        //check if its a new certain coin
+                        if(arr[dollar[part][cent][0]] == undefined){
+                            arr[dollar[part][cent][0]] = 0;
+                        }
+
+                        //increment the certain coin
+                        arr[dollar[part][cent][0]] += dollar[part][cent][arg]; 
+                    }
+                    else{
+                        cent++;
+                    }
+                }
+                else{
+                    cent++;
+                }
+            }
+
+        }
+
+        console.log(arr);
+
+        cent = 0;
+        change = [];
+        for(var key in arr){
+            change[cent] = [];
+            change[cent][0] = key;
+            change[cent][1] = arr[key];
+            cent++;
+        }
+    }
+
+    // Here is your change, ma'am.
+    return change;
+}
+
+// Example cash-in-drawer array:
+// [["PENNY", 1.01],
+// ["NICKEL", 2.05],
+// ["DIME", 3.10],
+// ["QUARTER", 4.25],
+// ["ONE", 90.00],
+// ["FIVE", 55.00],
+// ["TEN", 20.00],
+// ["TWENTY", 60.00],
+// ["ONE HUNDRED", 100.00]]
+
+// console.log(checkCashRegister(3.26, 100.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]));
+// console.log(checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]));
+// console.log(checkCashRegister(19.50, 20.00, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
+console.log(checkCashRegister(19.50, 20.00, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));

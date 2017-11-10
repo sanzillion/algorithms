@@ -1,46 +1,46 @@
 
-$(document).ready(function(){
-  //console.log("WELCOME FUCKERS!");
+// $(document).ready(function(){
+//   //console.log("WELCOME FUCKERS!");
 
-  //set
-  var input = $('#in');
+//   //set
+//   var input = $('#in');
 
-    input.on("keydown", function(e){
-      console.log("Inside function!");
-      var val = input.val();
-      if(val != ''){
-         if(e.keyCode == 13) //keyCode for Enter Key is 13
-          {
-              $(this).trigger("enterKey");
-          }
-      }
-    })
+//     input.on("keydown", function(e){
+//       console.log("Inside function!");
+//       var val = input.val();
+//       if(val != ''){
+//          if(e.keyCode == 13) //keyCode for Enter Key is 13
+//           {
+//               $(this).trigger("enterKey");
+//           }
+//       }
+//     })
 
-  input.bind("enterKey",function(e){
-        var val = input.val();
-        var ans;
-        $('#answer').text(rot13(val));
-  });
+//   input.bind("enterKey",function(e){
+//         var val = input.val();
+//         var ans;
+//         $('#answer').text(rot13(val));
+//   });
 
-  function rot13(str) { // LBH QVQ VG!
-      var str = str.toUpperCase();
-      var arr = str.split('');
-      for(var i = 0; i < arr.length; i++){
-        arr[i] = arr[i].charCodeAt();
-        if(arr[i] > 64 && arr[i] < 78){
-          arr[i] += 13;
-        }
-        else if(arr[i] > 77 && arr[i] < 91){
-          arr[i] -= 13;
-        }
-        arr[i] = String.fromCharCode(arr[i]);
-      }
-      answer = arr.join('');
-      return answer;
-    }
+//   function rot13(str) { // LBH QVQ VG!
+//       var str = str.toUpperCase();
+//       var arr = str.split('');
+//       for(var i = 0; i < arr.length; i++){
+//         arr[i] = arr[i].charCodeAt();
+//         if(arr[i] > 64 && arr[i] < 78){
+//           arr[i] += 13;
+//         }
+//         else if(arr[i] > 77 && arr[i] < 91){
+//           arr[i] -= 13;
+//         }
+//         arr[i] = String.fromCharCode(arr[i]);
+//       }
+//       answer = arr.join('');
+//       return answer;
+//     }
 
 
-});
+// });
 
 //get the difference of two arrays
 function diffArray(arr1, arr2) {
@@ -499,3 +499,66 @@ function checkCashRegister(price, cash, cid) {
 // console.log(checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]));
 // console.log(checkCashRegister(19.50, 20.00, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
 console.log(checkCashRegister(19.50, 20.00, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
+
+
+function updateInventory(arr1, arr2) {
+    //create find function that returns 
+    //arr1 index for duplicate
+	function find(curr, string){
+		var i = [];
+		//foreach arr1
+		curr.forEach(function(data, index){
+			//if the string pass is in arr1
+			if(data[1] == string){
+				i[0] = index;
+				return i;
+			}
+		});
+		return i;
+	}
+
+	for(var x = 0; x < arr2.length; x++){
+		//get index from duplicate
+		var index = find(arr1, arr2[x][1]);
+		//if there are duplicate add the values
+		if(index.length > 0){
+			arr1[index[0]][0] += arr2[x][0];
+		}
+		//if its unique push into arr1
+		else{
+			arr1.push(arr2[x]); 
+		}
+	}
+
+	//sort arr1 in alphabetical order
+	//this is reusable
+	arr1.sort(function(a,b){
+		var a1 = a[1].toUpperCase();
+		var b1 = b[1].toUpperCase();
+		if(a1 < b1){return -1;}
+		if(a1 > b1){return 1;}
+		return 0;
+	});
+
+    return arr1;
+}
+
+// Example inventory lists
+var curInv = [
+    [21, "Bowling Ball"],
+    [2, "Dirty Sock"],
+    [1, "Hair Pin"],
+    [5, "Microphone"]
+];
+
+var newInv = [
+    [2, "Hair Pin"],
+    [3, "Half-Eaten Apple"],
+    [67, "Bowling Ball"],
+    [7, "Toothpaste"]
+];
+
+
+// console.log(updateInventory(curInv, newInv));
+console.log(updateInventory([[0, "Bowling Ball"], [0, "Dirty Sock"], [0, "Hair Pin"], [0, "Microphone"]], 
+	[[1, "Hair Pin"], [1, "Half-Eaten Apple"], [1, "Bowling Ball"], [1, "Toothpaste"]]));
